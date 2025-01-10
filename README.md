@@ -135,7 +135,7 @@ Think of it like a talking robot with a super brain!
 
 ### **Step 2: How It Works**
 To make this app, we need 3 parts:  
-
+### **ExampleQ1**
 1. **Chat Model**: This is the brain of your app. It understands what you say and responds.  
    - Example: Imagine a friendly robot that talks with you.  
 
@@ -191,7 +191,6 @@ We are building a **talking library**:
 - **Library** stores knowledge.  
 - **Robot** remembers your questions and answers them by searching the library.  
 
-If you’d like, I can help you write the code step by step! Would you like to try coding this? 😊
 ### **Key Components of RAG**
 
 1. **Retrieval System**  
@@ -231,6 +230,7 @@ If you’d like, I can help you write the code step by step! Would you like to t
 RAG seamlessly integrates retrieval and language modeling to deliver reliable, context-aware AI responses.
 ### **What is RAG?**
 
+### **ExampleQ2**
 Imagine you have a super smart robot 🧠. The robot knows a lot of things, but its brain only has information from **old books**. This means it might not know about new things like the **latest sports game scores** or the **newest movie**. 😕  
 
 **RAG** helps the robot be even smarter! Instead of just using its old brain, the robot also looks for **new books or notes** to help answer your questions. It **searches** for the latest information, then combines what it found with its own knowledge to give you a **better answer**. 📚
