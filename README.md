@@ -2,91 +2,122 @@
 
  **Retrieval Augmented Generation (RAG)**
  
- A typical RAG system consists of two main stages:
 
-Indexing (Offline): Prepares the data for efficient retrieval.
-
-Retrieval and Generation (Online): Answers queries by retrieving relevant data and generating responses.
 ![image](https://github.com/user-attachments/assets/9aac0a08-dc5d-47de-a789-3aec407f702f)
 
 ---
 RAG enhances language models by dynamically retrieving external knowledge to address limitations like outdated information, high retraining costs, and hallucination risks.
 
 ---
-1. Indexing Process
-   
+### **Building a Retrieval-Augmented Generation
+
+RAG is a technique used to build question-answering (Q&A) applications that retrieve and integrate external information into responses. Here’s how to create a basic RAG app:
+
+---
+
+### **Overview of RAG Components**
+
+A typical RAG system consists of **two main stages**:  
+1. **Indexing (Offline):** Prepares the data for efficient retrieval.  
+2. **Retrieval and Generation (Online):** Answers queries by retrieving relevant data and generating responses.
+
+---
+
+### **1. Indexing Process**
 The goal of indexing is to prepare and store the data so it can be efficiently searched during retrieval.
 
-Steps in Indexing:
-Load Data:
+#### **Steps in Indexing:**
+1. **Load Data:**  
+   - Use **Document Loaders** to read your data source (e.g., PDFs, text files, or websites).  
+   - Tools like `LangChain` provide built-in loaders for various formats.  
 
-Use Document Loaders to read your data source (e.g., PDFs, text files, or websites).
+   ```python
+   from langchain.document_loaders import TextLoader
+   
+   loader = TextLoader("your_data.txt")
+   documents = loader.load()
+   ```
 
-Tools like LangChain provide built-in loaders for various formats.
+2. **Split Data:**  
+   - Large documents are split into smaller chunks using **Text Splitters**.  
+   - Smaller chunks are easier to index, search, and fit within the model’s context window.  
 
-from langchain.document_loaders import TextLoader
+   ```python
+   from langchain.text_splitter import RecursiveCharacterTextSplitter
+   
+   splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+   chunks = splitter.split_documents(documents)
+   ```
 
-loader = TextLoader("your_data.txt")
-documents = loader.load()
-Split Data:
+3. **Embed and Store:**  
+   - Use an **Embeddings Model** to convert chunks into numerical vectors.  
+   - Store these vectors in a **VectorStore** (e.g., Pinecone, FAISS).  
 
-Large documents are split into smaller chunks using Text Splitters.
-Smaller chunks are easier to index, search, and fit within the model’s context window.
+   ```python
+   from langchain.vectorstores import FAISS
+   from langchain.embeddings import OpenAIEmbeddings
+   
+   embeddings = OpenAIEmbeddings()
+   vectorstore = FAISS.from_documents(chunks, embeddings)
+   ```
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+---
 
-splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-chunks = splitter.split_documents(documents)
-Embed and Store:
-
-Use an Embeddings Model to convert chunks into numerical vectors.
-Store these vectors in a VectorStore (e.g., Pinecone, FAISS).
-
-
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
-
-embeddings = OpenAIEmbeddings()
-vectorstore = FAISS.from_documents(chunks, embeddings)
-2. Retrieval and Generation Process
-
+### **2. Retrieval and Generation Process**
 This process involves retrieving relevant chunks from the index and using them to generate answers.
 
-Steps in Retrieval and Generation:
-Retrieve Relevant Data:
+#### **Steps in Retrieval and Generation:**
+1. **Retrieve Relevant Data:**  
+   - A **Retriever** searches the VectorStore for chunks most similar to the query.  
 
-A Retriever searches the VectorStore for chunks most similar to the query.
+   ```python
+   retriever = vectorstore.as_retriever()
+   ```
 
+2. **Generate Answer:**  
+   - Pass the query and retrieved context to a **ChatModel** or **LLM** to produce the final response.  
 
-retriever = vectorstore.as_retriever()
-Generate Answer:
+   ```python
+   from langchain.chains import RetrievalQA
+   from langchain.chat_models import ChatOpenAI
+   
+   model = ChatOpenAI(model="gpt-4", temperature=0)
+   qa_chain = RetrievalQA.from_chain_type(llm=model, retriever=retriever)
+   
+   query = "What is RAG?"
+   answer = qa_chain.run(query)
+   print(answer)
+   ```
 
-Pass the query and retrieved context to a ChatModel or LLM to produce the final response.
+---
 
+### **Full Workflow**
 
-from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOpenAI
+#### **Indexing Workflow:**
+1. **Load:** Read the data with Document Loaders.  
+2. **Split:** Break documents into manageable chunks with Text Splitters.  
+3. **Store:** Convert chunks into vectors and save them in a VectorStore.
 
-model = ChatOpenAI(model="gpt-4", temperature=0)
-qa_chain = RetrievalQA.from_chain_type(llm=model, retriever=retriever)
+#### **Retrieval and Generation Workflow:**
+1. **Retrieve:** Fetch the most relevant chunks from the VectorStore using a Retriever.  
+2. **Generate:** Use a ChatModel or LLM to generate an answer based on the retrieved context.
 
-query = "What is RAG?"
-answer = qa_chain.run(query)
-print(answer)
+---
 
-**Full Workflow**
+### **Tools Used**
+- **LangChain:** Framework for handling data loading, splitting, and chaining.  
+- **VectorStore:** Tools like Pinecone or FAISS for efficient search.  
+- **Embeddings Model:** Converts text to vectors for similarity matching.  
+- **ChatModel/LLM:** Generates human-like responses.
 
-**Indexing Workflow:**
-**Load**: Read the data with Document Loaders.
-**Split:** Break documents into manageable chunks with Text Splitters.
-**Store:** Convert chunks into vectors and save them in a VectorStore.
+---
 
-**Retrieval and Generation Workflow:**
+### **Benefits of This Architecture**
+- **Scalable:** Handles large datasets by chunking and indexing.  
+- **Accurate:** Grounds responses in retrieved data, reducing hallucination.  
+- **Efficient:** Separates indexing (offline) from retrieval and generation (online).
 
-**Retrieve:** Fetch the most relevant chunks from the VectorStore using a Retriever.
-**Generate:** Use a ChatModel or LLM to generate an answer based on the retrieved context.
-
-
+This basic setup provides a foundation to build more advanced Q&A systems, such as conversational interactions or multi-step retrievals, which will be covered in Part 2!
 ### **Key Components of RAG**
 
 1. **Retrieval System**  
