@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/aadf22ea-e6d4-487f-8f75-0f2163417661)# RAG
+
 
  **Retrieval Augmented Generation (RAG)**
  
