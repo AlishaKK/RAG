@@ -286,6 +286,28 @@ In this way, autoencoders help make the RAG system more efficient and accurate b
 
 ### **Retriever in LangChain**
 - **Definition**: A **retriever** finds relevant documents based on a query (natural language input) and returns them in the form of **Document** objects, which include content and metadata.
+
+ **Pinecone as a Vector Store Retriever**:
+
+### **Pinecone Vector Store Retriever Workflow**:
+
+1. **Convert Documents and Queries into Vectors**:
+   - Use an **embedding model** (e.g., OpenAI Embeddings) to represent documents and queries as vectors.
+
+2. **Store Vectors in Pinecone**:
+   - Store the vectors of documents in **Pinecone’s vector database** for fast similarity search.
+
+3. **Query Conversion**:
+   - Convert the **query** into a vector using the same embedding model.
+
+4. **Similarity Comparison**:
+   - Pinecone compares the **query vector** with stored **document vectors** using similarity measures like **cosine similarity**.
+
+5. **Retrieve Relevant Documents**:
+   - Pinecone returns the most similar documents based on the calculated similarity score.
+
+6. **Semantic-Based Retrieval**:
+   - Documents are retrieved based on their **semantic meaning**, not just keyword matching.
   
 ### **Common Types**:
 1. **Search APIs**: Use external search engines (e.g., Wikipedia Search).
