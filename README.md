@@ -1,4 +1,4 @@
-# RAG
+![image](https://github.com/user-attachments/assets/aadf22ea-e6d4-487f-8f75-0f2163417661)# RAG
 
  **Retrieval Augmented Generation (RAG)**
  
@@ -9,13 +9,10 @@
 RAG enhances language models by dynamically retrieving external knowledge to address limitations like outdated information, high retraining costs, and hallucination risks.
 
 ---
-### **Building a Retrieval-Augmented Generation
-
-RAG is a technique used to build question-answering (Q&A) applications that retrieve and integrate external information into responses. Here’s how to create a basic RAG app:
-
+### **Building a Retrieval-Augmented Generation**
 ---
 
-### **Overview of RAG Components**
+### **RAG Components**
 
 A typical RAG system consists of **two main stages**:  
 1. **Indexing (Offline):** Prepares the data for efficient retrieval.  
@@ -98,9 +95,14 @@ This process involves retrieving relevant chunks from the index and using them t
 2. **Split:** Break documents into manageable chunks with Text Splitters.  
 3. **Store:** Convert chunks into vectors and save them in a VectorStore.
 
+   ![image](https://github.com/user-attachments/assets/1109d5bd-6732-469f-85de-7bd3bc9b8190)
+
+
 #### **Retrieval and Generation Workflow:**
 1. **Retrieve:** Fetch the most relevant chunks from the VectorStore using a Retriever.  
 2. **Generate:** Use a ChatModel or LLM to generate an answer based on the retrieved context.
+
+![image](https://github.com/user-attachments/assets/0cac1f1b-68d4-4405-ac1d-c8404b4d6511)
 
 ---
 
