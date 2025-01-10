@@ -1,5 +1,7 @@
 # RAG
+
  **Retrieval Augmented Generation (RAG)**
+![image](https://github.com/user-attachments/assets/9aac0a08-dc5d-47de-a789-3aec407f702f)
 
 ---
 RAG enhances language models by dynamically retrieving external knowledge to address limitations like outdated information, high retraining costs, and hallucination risks.
