@@ -281,6 +281,7 @@ Generation: The compressed and clean information is passed to the language model
 In this way, autoencoders help make the RAG system more efficient and accurate by improving how the retrieved information is processed before generating responses.
 
 
+![image](https://github.com/user-attachments/assets/0355a55d-50b2-474d-ac77-38316a396b79)
 
 
 ### **Retriever in LangChain**
