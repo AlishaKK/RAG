@@ -1,5 +1,5 @@
 # RAG
-Sure! Let's learn **Retrieval Augmented Generation (RAG)** in the simplest way possible, step by step. I'll explain it and give you a **fun example** to make it easy to understand! 🚀
+ **Retrieval Augmented Generation (RAG)**
 
 ---
 
