@@ -1,6 +1,7 @@
 # RAG
 
  **Retrieval Augmented Generation (RAG)**
+ 
  A typical RAG system consists of two main stages:
 
 Indexing (Offline): Prepares the data for efficient retrieval.
@@ -13,15 +14,16 @@ RAG enhances language models by dynamically retrieving external knowledge to add
 
 ---
 1. Indexing Process
+   
 The goal of indexing is to prepare and store the data so it can be efficiently searched during retrieval.
 
 Steps in Indexing:
 Load Data:
 
 Use Document Loaders to read your data source (e.g., PDFs, text files, or websites).
+
 Tools like LangChain provide built-in loaders for various formats.
-python
-Copy code
+
 from langchain.document_loaders import TextLoader
 
 loader = TextLoader("your_data.txt")
@@ -30,8 +32,7 @@ Split Data:
 
 Large documents are split into smaller chunks using Text Splitters.
 Smaller chunks are easier to index, search, and fit within the model’s context window.
-python
-Copy code
+
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
@@ -40,28 +41,29 @@ Embed and Store:
 
 Use an Embeddings Model to convert chunks into numerical vectors.
 Store these vectors in a VectorStore (e.g., Pinecone, FAISS).
-python
-Copy code
+
+
 from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
 
 embeddings = OpenAIEmbeddings()
 vectorstore = FAISS.from_documents(chunks, embeddings)
 2. Retrieval and Generation Process
+
 This process involves retrieving relevant chunks from the index and using them to generate answers.
 
 Steps in Retrieval and Generation:
 Retrieve Relevant Data:
 
 A Retriever searches the VectorStore for chunks most similar to the query.
-python
-Copy code
+
+
 retriever = vectorstore.as_retriever()
 Generate Answer:
 
 Pass the query and retrieved context to a ChatModel or LLM to produce the final response.
-python
-Copy code
+
+
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 
@@ -71,12 +73,16 @@ qa_chain = RetrievalQA.from_chain_type(llm=model, retriever=retriever)
 query = "What is RAG?"
 answer = qa_chain.run(query)
 print(answer)
+
 **Full Workflow**
+
 **Indexing Workflow:**
 **Load**: Read the data with Document Loaders.
 **Split:** Break documents into manageable chunks with Text Splitters.
 **Store:** Convert chunks into vectors and save them in a VectorStore.
+
 **Retrieval and Generation Workflow:**
+
 **Retrieve:** Fetch the most relevant chunks from the VectorStore using a Retriever.
 **Generate:** Use a ChatModel or LLM to generate an answer based on the retrieved context.
 
