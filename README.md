@@ -1,7 +1,7 @@
 
 
- **Retrieval Augmented Generation (RAG)**
- 
+### **Retrieval Augmented Generation (RAG)**
+--- 
 
 ![image](https://github.com/user-attachments/assets/9aac0a08-dc5d-47de-a789-3aec407f702f)
 
