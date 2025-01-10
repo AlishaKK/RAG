@@ -279,3 +279,5 @@ Retrieval: The system retrieves relevant documents from an external knowledge ba
 Autoencoder Encoding: The retrieved documents are passed through an autoencoder to compress and clean the information.
 Generation: The compressed and clean information is passed to the language model (like Gemini AI or GPT), which generates a response based on the provided context.
 In this way, autoencoders help make the RAG system more efficient and accurate by improving how the retrieved information is processed before generating responses.
+![image](https://github.com/user-attachments/assets/b92fff39-3b5f-4a4c-92b5-1b61bc568401)
+
