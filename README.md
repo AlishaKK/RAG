@@ -1,6 +1,10 @@
 # RAG
 
  **Retrieval Augmented Generation (RAG)**
+ A typical RAG system consists of two main stages:
+
+Indexing (Offline): Prepares the data for efficient retrieval.
+Retrieval and Generation (Online): Answers queries by retrieving relevant data and generating responses.
 ![image](https://github.com/user-attachments/assets/9aac0a08-dc5d-47de-a789-3aec407f702f)
 
 ---
