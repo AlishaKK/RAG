@@ -279,5 +279,26 @@ Retrieval: The system retrieves relevant documents from an external knowledge ba
 Autoencoder Encoding: The retrieved documents are passed through an autoencoder to compress and clean the information.
 Generation: The compressed and clean information is passed to the language model (like Gemini AI or GPT), which generates a response based on the provided context.
 In this way, autoencoders help make the RAG system more efficient and accurate by improving how the retrieved information is processed before generating responses.
+
+
+
+
+### **Retriever in LangChain**
+- **Definition**: A **retriever** finds relevant documents based on a query (natural language input) and returns them in the form of **Document** objects, which include content and metadata.
+  
+### **Common Types**:
+1. **Search APIs**: Use external search engines (e.g., Wikipedia Search).
+2. **Databases**: Built on relational or graph databases (e.g., SQL to text).
+3. **Lexical Search**: Matches words in queries with documents (e.g., BM25, TF-IDF).
+4. **Vector Stores**: Use embeddings to find similar documents (e.g., FAISS, Pinecone).
+
+### **Advanced Features**:
+- **Ensemble Retrievers**: Combine multiple retrievers with weighted scores.
+- **Re-ranking**: Use algorithms (e.g., Reciprocal Rank Fusion) to improve results.
+- **Source Document Retention**: Keep the original document context, even when using chunked data.
+
+### **Summary**:  
+Retrievers help AI systems fetch relevant documents. You can use different retrieval methods (APIs, databases, embeddings) and combine them for better results. Retaining the original context is key for high-quality answers.
+
 ![image](https://github.com/user-attachments/assets/b92fff39-3b5f-4a4c-92b5-1b61bc568401)
 
