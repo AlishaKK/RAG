@@ -322,6 +322,77 @@ In this way, autoencoders help make the RAG system more efficient and accurate b
 
 ### **Summary**:  
 Retrievers help AI systems fetch relevant documents. You can use different retrieval methods (APIs, databases, embeddings) and combine them for better results. Retaining the original context is key for high-quality answers.
+![image](https://github.com/user-attachments/assets/9da017da-b42b-411d-b5d7-764d8b1263d9)
+
+
+---
+
+### **Vector Stores**
+- **Vector Stores**: Databases that index and retrieve information using vector representations (embeddings) based on semantic meaning.
+- **Embeddings**: Vectors representing data (text, images) to enable meaning-based searches, not just keyword matching.
+
+---
+
+### **Key Methods**
+- **add_documents**: Add texts to the vector store.
+- **delete_documents**: Remove documents from the vector store.
+- **similarity_search**: Find documents similar to a given query.
+
+---
+
+### **Operations**
+1. **Adding Documents**: 
+   - Store documents with content and metadata.
+   - Example:
+     ```python
+     document_1 = Document(page_content="Chocolate chip pancakes for breakfast.", metadata={"source": "tweet"})
+     vector_store.add_documents(documents=[document_1])
+     ```
+
+2. **Deleting Documents**: 
+   - Remove documents by their IDs.
+   - Example:
+     ```python
+     vector_store.delete_documents(ids=["doc1"])
+     ```
+
+3. **Searching**: 
+   - Retrieve similar documents based on a query.
+   - Example:
+     ```python
+     results = vector_store.similarity_search("What's the weather tomorrow?")
+     ```
+
+---
+
+### **Similarity Metrics**
+- **Cosine Similarity**: Measures the cosine angle between vectors.
+- **Euclidean Distance**: Measures the straight-line distance.
+- **Dot Product**: Measures vector projection.
+
+---
+
+### **Advantages**
+- **Semantic Search**: Finds documents by meaning, not just keywords.
+- **Efficient**: Fast search over large datasets using embeddings.
+- **Scalable**: Works with unstructured data like text, images, audio.
+
+---
+
+### **LangChain VectorStore Integrations**
+- **Multiple Integrations**: Works with stores like Pinecone, FAISS, and more.
+- **Standard Interface**: Consistent API for switching between different stores.
+
+---
+
+### **Example Flow**
+1. Convert text to embeddings.
+2. Store embeddings in a vector store (e.g., Pinecone).
+3. Perform a similarity search with a query.
+
+---
+
+
 
 ![image](https://github.com/user-attachments/assets/b92fff39-3b5f-4a4c-92b5-1b61bc568401)
 
